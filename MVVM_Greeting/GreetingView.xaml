@@ -1,0 +1,34 @@
+﻿<Window x:Class="MVVM_Greeting.GreetingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM_Greeting"
+        xmlns:vm="clr-namespace:MVVM_Greeting.ViewModel"
+        mc:Ignorable="d"
+        Title="GreetingView" Height="500" Width="800">
+    <Window.Resources>
+        <vm:GreetingViewModel x:Key="GreetingViewModel"/>
+    </Window.Resources>
+    <Grid Background="PaleGreen"  DataContext="{Binding Source={StaticResource GreetingViewModel}}">
+        
+        <TextBlock HorizontalAlignment="Center" Margin="10,10,10,0" TextWrapping="Wrap" Text="WPF" VerticalAlignment="Top" Height="31" Width="164" FontSize="25" Foreground="#FFD73916" TextAlignment="Center"/>
+    
+        <TextBlock HorizontalAlignment="Center" Margin="10,50,10,0" TextAlignment="Center" Foreground="Red" Text="MVVM Example:Greeting" VerticalAlignment="Top" Height="41" Width="236" FontSize="20"/>
+
+        <StackPanel Margin="10,100,10,0">
+            <TextBlock Text="FirstName" FontSize="18"/>
+            <TextBox x:Name="txtFName" Text="{Binding GreetingModel_.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="30" />
+        </StackPanel>
+        <StackPanel Margin="10,150,10,0">
+            <TextBlock Text="LastName" FontSize="18"/>
+            <TextBox x:Name="txtLName" Text="{Binding GreetingModel_.LastName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+        </StackPanel>
+        <StackPanel Margin="10,250,10,0">
+            <TextBlock FontSize="18" Background="White" Text="{Binding GreetingModel_.Greeting}"/>
+        </StackPanel>
+
+        <Button x:Name="Click_Me" Command="{Binding MyCommand}" Margin="100,422,100,10" Foreground="Red"
+                Content="Click_Here"  FontSize="20" Background="PaleGoldenrod"/>
+    </Grid>
+</Window>
